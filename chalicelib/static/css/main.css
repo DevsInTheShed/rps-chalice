@@ -1,0 +1,33 @@
+html {
+    background-color: #041424;
+    color: white;
+    text-align: center;
+}
+
+input {
+    border: none;
+    color: white;
+    background-color: #041424;
+    padding: 20px;
+    text-align: center;
+    font-size: 64px;
+    cursor: pointer;
+}
+
+h1 {
+    padding: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 32px;
+}
+
+h2 {
+    padding: 4px;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    font-size: 64px;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+}

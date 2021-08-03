@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <title>{{ title }}</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet"> 
+    </head>
+    <body>
+        <h1>{{ title }}</h1>
+        <p>You chose:</p>
+        <h2>{{ choice }}</h2>
+        <p>The computer chose:</p>
+        <h2>{{ computer_choice }}</h2>
+        <h1>{{ outcome }}</h1>
+        <form action="/api" method="get">
+            <input type="submit" value="try again">
+        </form>
+    </body>
+</html>
