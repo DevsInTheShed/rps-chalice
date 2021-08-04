@@ -19,7 +19,7 @@ pip install chalice
 * Create a virtual environment within your project folder (note some systems you'll need to use python3 instead):
 ``` bash
 python -m venv venv
-. venv/bin/activate
+.\venv\Scripts\activate
 ```
 * Install any extra dependancies (note again some systems you'll need to use pip3 instead):
 ``` bash
