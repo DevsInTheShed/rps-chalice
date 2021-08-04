@@ -4,7 +4,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;900&display=swap" rel="stylesheet"> 
-        <link rel="stylesheet" type="text/css" href="static/css/main.css">
+        <link rel="stylesheet" href="css/main.css">
+
     </head>
     <body>
         <h1>{{ title }}</h1>
@@ -14,7 +15,7 @@
         <p>The computer chose:</p>
         <h2>{{ computer_choice }}</h2>
         <h1>{{ outcome }}</h1>
-        <form action="/api" method="get">
+        <form action="/api/" method="get">
             <input type="submit" value="try again">
         </form>
     </body>
