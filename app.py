@@ -6,7 +6,7 @@ import jinja2
 app = Chalice(app_name='rps-chalice')
 app.log.setLevel(logging.DEBUG)
 
-computer_choice_options = ['rock', 'paper', 'scissors']
+computer_choice_options = ['🪨', '📜', '✂️']
 
 def render(tpl_path, context):
     path, filename = os.path.split(tpl_path)
@@ -16,11 +16,12 @@ def render(tpl_path, context):
 @app.route('/index', methods = ['GET'], content_types=['application/json'])
 def index():
     context = {
-        "title": "Rock, paper, scissors"
+        "title": "Devs in the Shed",
+        "subtitle": "Rock 🪨, Paper 📜, Scissors ✂️ mini game"
     }
     template = render("chalicelib/templates/index.html", context)
     return Response(template, status_code=200,
-                    headers={"Content-Type": "text/html", "Access-Control-Allow-Origin": "*"})
+                    headers={'Content-Type': 'text/html; charset=utf-8'})
 
 @app.route('/result', methods = ['POST'], content_types=['application/x-www-form-urlencoded'])
 def result():
@@ -32,16 +33,17 @@ def result():
     computer_choice = random.choice(computer_choice_options)
     if choice == computer_choice:
         outcome = "You tied with the computer"
-    elif choice == "rock" and computer_choice == "paper" or choice == "paper" and computer_choice == "scissors" or choice == "scissors" and computer_choice == "rock":
+    elif choice == "🪨" and computer_choice == "📜" or choice == "📜" and computer_choice == "✂️" or choice == "✂️" and computer_choice == "🪨":
         outcome = "You lost to the computer"
     else: outcome = "You won over the computer"
     context = {
-        "title": "Rock, paper, scissors",
+        "title": "Devs in the Shed",
+        "subtitle": "Rock 🪨, Paper 📜, Scissors ✂️ mini game",
         "choice": choice, 
         "computer_choice": computer_choice, 
         "outcome": outcome
     }
     template = render("chalicelib/templates/result.html", context)
     return Response(template, status_code=200,
-                    headers={"Content-Type": "text/html", "Access-Control-Allow-Origin": "*"})
+                    headers={'Content-Type': 'text/html; charset=utf-8'})
 
