@@ -7,6 +7,7 @@ app = Chalice(app_name='rps-chalice')
 app.log.setLevel(logging.DEBUG)
 
 computer_choice_options = ['🪨', '📜', '✂️']
+placeholder_spock_variant_emojis = ['🦎', '🖖']
 
 def render(tpl_path, context):
     path, filename = os.path.split(tpl_path)
