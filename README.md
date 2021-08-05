@@ -12,10 +12,7 @@
 
 ### To install:
 * Download this repository and navigate to the downloaded project folder within your terminal of choice.
-* Run the following command in terminal to download the Chalice CLI (note some systems you'll need to use pip3 instead):
-``` bash
-pip install chalice
-```
+
 * Create a virtual environment within your project folder (note some systems you'll need to use python3 instead):
 ``` bash
 python -m venv venv
@@ -28,8 +25,8 @@ python -m venv venv
 ``` bash
 source venv/bin/activate
 ```
-
-* Install any extra dependancies (note again some systems you'll need to use pip3 instead):
+* Run the following command in terminal to download and install Chalice CLI
+* This will also install any extra dependancies (note some systems you'll need to use pip3 instead):
 ``` bash
 pip install -r requirements.txt
 ```
