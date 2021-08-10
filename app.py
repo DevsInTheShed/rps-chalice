@@ -26,6 +26,16 @@ def index():
     return Response(my_str_as_bytes, status_code=200,
                     headers={'Content-Type': 'text/html; charset=utf-8'})
 
+@app.route('/error', methods = ['GET'], content_types=['application/json'])
+def error_page():
+    context = {
+        "title": "Devs in the Shed"
+    }
+    template = render("chalicelib/templates/error.html", context)
+    my_str_as_bytes = str.encode(template)
+    return Response(my_str_as_bytes, status_code=404,
+                    headers={'Content-Type': 'text/html; charset=utf-8'})
+
 @app.route('/result', methods = ['POST'], content_types=['application/x-www-form-urlencoded'])
 def result():
     
