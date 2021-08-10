@@ -4,7 +4,7 @@ import os, logging, random, base64
 import jinja2
 
 app = Chalice(app_name='rps-chalice')
-app.log.setLevel(logging.DEBUG)
+# app.log.setLevel(logging.DEBUG)
 app.api.binary_types =['*/*']
 
 computer_choice_options = ['🪨', '📜', '✂️']
