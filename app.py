@@ -69,8 +69,8 @@ def css(css_file):
 
 @app.route('/images/{image_file}')
 def image(image_file):
-    f = open("chalicelib/static/images/" + image_file, "rb")
-    ima = f.read()
-    f.close()
+    with open("chalicelib/static/images/" + image_file, "rb") as f:
+        ima = f.read()
+        f.close()
     return Response(ima, status_code=200, headers={'Content-Type': 'image/png'})
 
