@@ -1,10 +1,11 @@
 from chalice import Chalice, Response
-from urllib.parse import urlparse, parse_qs
-import os, logging, random
+from urllib.parse import parse_qs
+import os, logging, random, base64
 import jinja2
 
 app = Chalice(app_name='rps-chalice')
-app.log.setLevel(logging.DEBUG)
+# app.log.setLevel(logging.DEBUG)
+app.api.binary_types =['*/*']
 
 computer_choice_options = ['🪨', '📜', '✂️','🦎', '🖖']
 Outcomes = {
@@ -31,10 +32,21 @@ def render(tpl_path, context):
 def index():
     context = {
         "title": "Devs in the Shed",
-        "subtitle": "Rock 🪨, Paper 📜, Scissors ✂️ mini game"
+        "subtitle": "Rock , Paper 📜, Scissors ✂️ mini game"
     }
     template = render("chalicelib/templates/index.html", context)
-    return Response(template, status_code=200,
+    my_str_as_bytes = str.encode(template)
+    return Response(my_str_as_bytes, status_code=200,
+                    headers={'Content-Type': 'text/html; charset=utf-8'})
+
+@app.route('/error', methods = ['GET'], content_types=['application/json'])
+def error_page():
+    context = {
+        "title": "Devs in the Shed"
+    }
+    template = render("chalicelib/templates/error.html", context)
+    my_str_as_bytes = str.encode(template)
+    return Response(my_str_as_bytes, status_code=404,
                     headers={'Content-Type': 'text/html; charset=utf-8'})
 
 @app.route('/result', methods = ['POST'], content_types=['application/x-www-form-urlencoded'])
@@ -59,6 +71,21 @@ def result():
         "outcome": outcome
     }
     template = render("chalicelib/templates/result.html", context)
-    return Response(template, status_code=200,
+    return Response(str.encode(template), status_code=200,
                     headers={'Content-Type': 'text/html; charset=utf-8'})
+
+@app.route('/css/{css_file}')
+def css(css_file):
+    with open('chalicelib/static/css/' + css_file, 'r') as file:
+        data = file.read().replace('\n', '')
+
+    return Response(str.encode(data), status_code=200,
+                    headers={'Content-Type': 'text/css; charset=utf-8'})
+
+@app.route('/images/{image_file}')
+def image(image_file):
+    with open("chalicelib/static/images/" + image_file, "rb") as f:
+        ima = f.read()
+        f.close()
+    return Response(ima, status_code=200, headers={'Content-Type': 'image/png'})
 
